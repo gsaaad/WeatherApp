@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+        href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
+        rel="stylesheet"
+        />
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        />
+        <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        
+        <title>Weather App - Check the Weather</title>
+    </head>
+    
+    <body>
+      <div class="flex-column">
+      
+      <div>
+          <header>
+              <h1 class="app-title">Weather Dashboard</h1>
+            </header>
+        </div>
+        
+        <div class="flex-row justify-space-between">
+            
+            <div class="col-2 top-div">
+                <h3 class="search-city">Search for a City:</h3>
+                <form id="user-form" ">
+                    <input
+                    type="text"
+                    id="username"
+                    type="text"
+                    class="form-input"
+                    placeholder="San Diego"
+                    />
+                    <button type="text" class="btn-search" autofocus="true" id="username">
+                        Search
+                    </button>
+                </form>
+            </div>
+            
+            
+            <div id="featured-cities" class="col-2 bot-div">
+                <button class="btn-city" data-city="Austin">Austin</button>
+                <button class="btn-city" data-city="Chicago">Chicago</button>
+                <button class="btn-city" data-city="New York">New York</button>
+                <button class="btn-city" data-city="Orlando">Orlando</button>
+                <button class="btn-city" data-city="San Francisco">San Francisco</button>
+                <button class="btn-city" data-city="Seattle">Seattle</button>
+                <button class="btn-city" data-city="Denver">Denver</button>
+                <button class="btn-city" data-city="Atlanta">Atlanta</button>
+            </div>
+            
+            
+        </div>
+        
+        <div>
+            <div class="col-9 right-column position-fixed">
+                <!-- right column, writting data to this section -->
+                
+                <div class="weather-report text-left" id = 'weather-report'>
+
+                    <h2 >{CITY NAME} <span id="date"></span> </h2>
+                    <div>
+                        <ol >
+                            <li class="col-2 weather-stats">Temp:
+                                 <span class="weather-stats"id = "Temp"></span>
+                            </li>
+                            <li class="col-2 weather-stats">Wind:
+                                 <span class="weather-stats" id = "Wind"></span>
+                            </li>
+                            <li class="col-2 weather-stats">Humidity:
+                                 <span class="weather-stats" id="Humidity"></span>
+                            </li>
+                            <li class="col-2 weather-stats">UV Index:
+                                 <span class="weather-stats" id="UV">0.47</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <h2>5-Day Forecast: </h2>
+                <div class="row align-items-center">
+                    <div class="col card forecast-day" >
+                      <span class = "day-title" id = "forecast-day1">
+                        One of Five Columns
+                      </span> 
+                    </div>
+                    <div class="col card forecast-day">
+                        <span class = "day-title" id = "forecast-day2">
+                        One of Five Columns
+                      </span> 
+                    
+                    </div>
+                    <div class="col card forecast-day">
+                        <span class = "day-title" id = "forecast-day3">
+                        One of Five Columns
+                      </span> 
+                    
+                    </div>
+                    <div class="col card forecast-day">
+                        <span class = "day-title" id = "forecast-day4">
+                    One of Five Columns
+                      </span> 
+                      
+                    </div>
+                    <div class="col card forecast-day">
+                        <span class = "day-title" id = "forecast-day5">
+                        One of Five Columns
+                      </span> 
+                    
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="./assets/js/script.js"></script>
+
+</body>
+</html>
