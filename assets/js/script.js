@@ -10,6 +10,7 @@ var weatherIconEl = $("#ICON");
 var weatherTextEl = $("#weather");
 var humidityEl = $("#Humidity");
 var uvEl = $("#UV");
+var searchedCityBtn = $(".btn-search");
 
 //five day forecast elements + Parent + adding classes
 var fiveDayParentEl = $("#fiveDayForecast");
@@ -23,17 +24,9 @@ var date = moment().format("l");
 var todayNum = parseInt(date.split("/")[1]);
 var counter = 1;
 
-//Displaying Date for 5 day forecast~!
-// for (let i = 0; i < 5; i++) {
-//   // console.log(todayNum + i + 1);
-
-//   fiveDayChildrenEl[i].innerHTML =
-//     date[0] + "/" + (todayNum + i + 1) + "/" + parseInt(date.split("/")[2]);
-// }
-
 //Utilize the weather APP Fetch
 
-var getWeather = function () {
+var getWeather = function (city) {
   const getWeatherByCityName = {
     method: "GET",
     headers: {
@@ -43,7 +36,7 @@ var getWeather = function () {
   };
 
   fetch(
-    "https://weatherapi-com.p.rapidapi.com/current.json?q=mississauga",
+    `https://weatherapi-com.p.rapidapi.com/current.json?q=${city}`,
     getWeatherByCityName
   )
     .then((response) => response.json())
@@ -82,7 +75,7 @@ var getWeather = function () {
 };
 // getWeather();
 
-var forecastWeather = function () {
+var forecastWeather = function (city) {
   const fiveDayForecast = {
     method: "GET",
     headers: {
@@ -92,11 +85,13 @@ var forecastWeather = function () {
   };
 
   fetch(
-    "https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=toronto&cnt=5&units=metric",
+    `https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=${city}&cnt=5&units=metric`,
     fiveDayForecast
   )
     .then(function (response) {
-      if (response.ok) {
+      if (!response.ok) {
+        alert("Pleasecheck spelling of your City");
+      } else {
         response.json().then(function (data) {
           // console.log(data.list[0].weather[0].icon);
           console.log(data);
@@ -118,7 +113,7 @@ var forecastWeather = function () {
               "/" +
               parseInt(date.split("/")[2]);
             var dayTemp = data.list[i].temp.day + "°C" + "\n";
-            var windSpeed = data.list[i].speed + "Metres/sec" + "\n";
+            var windSpeed = data.list[i].speed + "Metres/second" + "\n";
             var humidityLevel = data.list[i].humidity + "%" + "\n";
 
             //create elements SPAN for Temp, Wind, Humidity
@@ -129,7 +124,7 @@ var forecastWeather = function () {
               "Wind: " + windSpeed);
             var humidityForecast = (document.createElement("span").innerHTML =
               "Humidity: " + humidityLevel);
-
+            fiveDayChildrenEl[i].innerHTML = " ";
             fiveDayChildrenEl[i].append(
               forecastDate,
               weatherIconEl,
@@ -140,8 +135,6 @@ var forecastWeather = function () {
             );
           }
         });
-      } else {
-        alert("There was an error in fetching 5 day forecast!");
       }
     })
     .catch(function (err) {
@@ -151,4 +144,13 @@ var forecastWeather = function () {
       );
     });
 };
-forecastWeather();
+// forecastWeather();
+
+searchedCityBtn.on("click", function (event) {
+  event.preventDefault();
+  // console.log($(this).prev().val());
+  var searchedCity = $(this).prev().val();
+  console.log(searchedCity);
+  getWeather(searchedCity);
+  forecastWeather(searchedCity);
+});
