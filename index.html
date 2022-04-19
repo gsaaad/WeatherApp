@@ -50,14 +50,14 @@
             
             
             <div id="featured-cities" class="col-2 bot-div">
-                <button class="btn-city" data-city="Austin">Austin</button>
+                <!-- <button class="btn-city" data-city="Austin">Austin</button>
                 <button class="btn-city" data-city="Chicago">Chicago</button>
                 <button class="btn-city" data-city="New York">New York</button>
                 <button class="btn-city" data-city="Orlando">Orlando</button>
                 <button class="btn-city" data-city="San Francisco">San Francisco</button>
                 <button class="btn-city" data-city="Seattle">Seattle</button>
                 <button class="btn-city" data-city="Denver">Denver</button>
-                <button class="btn-city" data-city="Atlanta">Atlanta</button>
+                <button class="btn-city" data-city="Atlanta">Atlanta</button> -->
             </div>
             
             
@@ -68,8 +68,13 @@
                 <!-- right column, writting data to this section -->
                 
                 <div class="weather-report text-left" id = 'weather-report'>
+                    <div class="d-flex align-items-center">
 
-                    <h2 >{CITY NAME} <span id="date"></span> </h2>
+                        <h2 id = "cityName">{CITY NAME} </h2>
+                        <h2 id="date"></h2> 
+                        <h3 id="weather"></h3>
+                        <img src="#" alt="" id="ICON">
+                    </div>
                     <div>
                         <ol >
                             <li class="col-2 weather-stats">Temp:
@@ -82,43 +87,19 @@
                                  <span class="weather-stats" id="Humidity"></span>
                             </li>
                             <li class="col-2 weather-stats">UV Index:
-                                 <span class="weather-stats" id="UV">0.47</span>
+                                 <span class="weather-stats-uv" id="UV">0.47</span>
                             </li>
                         </ol>
                     </div>
                 </div>
                 <h2>5-Day Forecast: </h2>
-                <div class="row align-items-center">
-                    <div class="col card forecast-day" >
-                      <span class = "day-title" id = "forecast-day1">
-                        One of Five Columns
-                      </span> 
-                    </div>
-                    <div class="col card forecast-day">
-                        <span class = "day-title" id = "forecast-day2">
-                        One of Five Columns
-                      </span> 
-                    
-                    </div>
-                    <div class="col card forecast-day">
-                        <span class = "day-title" id = "forecast-day3">
-                        One of Five Columns
-                      </span> 
-                    
-                    </div>
-                    <div class="col card forecast-day">
-                        <span class = "day-title" id = "forecast-day4">
-                    One of Five Columns
-                      </span> 
-                      
-                    </div>
-                    <div class="col card forecast-day">
-                        <span class = "day-title" id = "forecast-day5">
-                        One of Five Columns
-                      </span> 
-                    
-                    </div>
-                  </div>
+                <div class="row align-items-center" id="fiveDayForecast">
+                    <div class="col card forecast-day" ></div>
+                    <div class="col card forecast-day "></div>
+                    <div class="col card forecast-day"></div>
+                    <div class="col card forecast-day"></div>
+                    <div class="col card forecast-day"></div>
+                </div>
             </div>
         </div>
 
