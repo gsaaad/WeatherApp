@@ -12,12 +12,14 @@ var humidityEl = $("#Humidity");
 var uvEl = $("#UV");
 var searchedCityBtn = $(".btn-search");
 var featuredCities = $("#featured-cities");
+var pastSearches = $("#past-searches");
 
 var citiesLocal = localStorage.getItem("savedCities");
 
 // console.log(featuredCities.children().length);
+
 if (citiesLocal) {
-  featuredCities.attr("style", "display:block;");
+  pastSearches.attr("style", "display:block;");
 
   citiesLocal = JSON.parse(citiesLocal);
   var savedCitiesArray = citiesLocal;
@@ -30,7 +32,7 @@ if (citiesLocal) {
     featuredCities.append(newElement);
   }
 } else {
-  featuredCities.attr("style", "display:none");
+  pastSearches.attr("style", "display:none");
   var savedCitiesArray = [];
 }
 
@@ -80,7 +82,7 @@ var getWeather = function (city) {
 
       var uvIndex = data.current.uv;
       uvEl.text(uvIndex);
-      console.log(data.current.condition.icon);
+      // console.log(data.current.condition.icon);
 
       weatherIconEl.attr("src", data.current.condition.icon);
       weatherTextEl.text(" ~It's " + data.current.condition.text);
@@ -115,7 +117,7 @@ var forecastWeather = function (city) {
       } else {
         response.json().then(function (data) {
           // console.log(data.list[0].weather[0].icon);
-          console.log(data);
+          // console.log(data);
 
           for (let i = 0; i <= 4; i++) {
             //create IMG element for icon
@@ -171,7 +173,7 @@ searchedCityBtn.on("click", function (event) {
   event.preventDefault();
   // console.log($(this).prev().val());
   var searchedCity = $(this).prev().val();
-  console.log(searchedCity);
+  // console.log(searchedCity);
   getWeather(searchedCity);
   forecastWeather(searchedCity);
 
@@ -182,4 +184,11 @@ searchedCityBtn.on("click", function (event) {
   savedCitiesArray.push(savedSearches);
 
   localStorage.setItem("savedCities", JSON.stringify(savedCitiesArray));
+});
+
+featuredCities.on("click", function (event) {
+  console.log(event.target.textContent);
+  var clickedCity = event.target.textContent;
+  getWeather(clickedCity);
+  forecastWeather(clickedCity);
 });
