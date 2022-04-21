@@ -28,6 +28,7 @@
 .search-city {
   font-weight: 700;
 }
+
 .form-input {
   width: 100%;
   padding: 3%;
@@ -59,7 +60,8 @@
   height: 40px;
   font-size: 25px;
   font-weight: 700;
-  margin: 30px 0;
+  margin: 10px 0;
+  padding: 0 35%;
 }
 .right-column {
   top: 125px;
@@ -85,6 +87,7 @@
   margin: 15px;
   font-size: 30px;
 }
-.test {
-  background-color: red;
+#featured-cities {
+  display: flex;
+  flex-direction: column;
 }

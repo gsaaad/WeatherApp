@@ -11,6 +11,28 @@ var weatherTextEl = $("#weather");
 var humidityEl = $("#Humidity");
 var uvEl = $("#UV");
 var searchedCityBtn = $(".btn-search");
+var featuredCities = $("#featured-cities");
+
+var citiesLocal = localStorage.getItem("savedCities");
+
+// console.log(featuredCities.children().length);
+if (citiesLocal) {
+  featuredCities.attr("style", "display:block;");
+
+  citiesLocal = JSON.parse(citiesLocal);
+  var savedCitiesArray = citiesLocal;
+  for (let i = 0; i < citiesLocal.length; i++) {
+    var newElement = document.createElement("div");
+    newElement.classList.add("btn-city");
+    newElement.innerHTML =
+      citiesLocal[i].city.charAt(0).toUpperCase() +
+      citiesLocal[i].city.slice(1);
+    featuredCities.append(newElement);
+  }
+} else {
+  featuredCities.attr("style", "display:none");
+  var savedCitiesArray = [];
+}
 
 //five day forecast elements + Parent + adding classes
 var fiveDayParentEl = $("#fiveDayForecast");
@@ -73,7 +95,6 @@ var getWeather = function (city) {
     })
     .catch((err) => console.error(err));
 };
-// getWeather();
 
 var forecastWeather = function (city) {
   const fiveDayForecast = {
@@ -144,8 +165,8 @@ var forecastWeather = function (city) {
       );
     });
 };
-// forecastWeather();
 
+// make search bar usable
 searchedCityBtn.on("click", function (event) {
   event.preventDefault();
   // console.log($(this).prev().val());
@@ -153,4 +174,12 @@ searchedCityBtn.on("click", function (event) {
   console.log(searchedCity);
   getWeather(searchedCity);
   forecastWeather(searchedCity);
+
+  var savedSearches = {
+    city: searchedCity,
+  };
+
+  savedCitiesArray.push(savedSearches);
+
+  localStorage.setItem("savedCities", JSON.stringify(savedCitiesArray));
 });
